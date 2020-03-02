@@ -2,16 +2,35 @@ package org.launchcode.techjobs_oo.Tests;
 
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class JobTest {
+    private static Job job1;
+    private static Job job2;
+    private static Job testJob1;
+
     @Test
     public void testSettingJobId() {
-        Job job1 = new Job();
-        Job job2 = new Job();
+        job1 = new Job();
+        job2 = new Job();
 
         assertEquals(job1, job2);
-        assertFalse(job1.equals(job2));
+        //assertFalse(job1.equals(job2));
+        //assertTrue((job1.getId()) < (job2.getId()));
+    }
+
+    @Test
+    public void testJobConstructorSetsAllFields() {
+        testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertEquals(testJob1.getEmployer(), testJob1.getValue(), testJob1.getLocation(), testJob1.getValue());
+
+    }
+
+    @Test
+    public void testJobsForEquality(){
+
     }
 }

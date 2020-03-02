@@ -21,7 +21,7 @@ public class Job {
 
     }
 
-    public void Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         Job();
 
         this.name = name;
@@ -73,6 +73,7 @@ public class Job {
     }
 
     public int getId() {
+
         return id;
     }
 
