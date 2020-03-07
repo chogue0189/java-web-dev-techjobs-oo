@@ -2,9 +2,7 @@ package org.launchcode.techjobs_oo.Tests;
 
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class JobTest {
     private static Job job1;
@@ -12,6 +10,7 @@ public class JobTest {
     private static Job testJob1;
     private static Job testJob2;
     private static Job testJob3;
+    private static Job testEmptyJob;
 
 
     //Test constructor is setting a unique ID for each job
@@ -22,7 +21,8 @@ public class JobTest {
         testJob1 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         testJob2 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         testJob3 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
-        assertEquals(1, job2.getId() - job1.getId(), .001);
+        testEmptyJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        //assertEquals(1, job2.getId() - job1.getId(), .001);
         //assertFalse(job1.equals(job2));
         //assertTrue((job1.getId()) < (job2.getId()));
     }
@@ -30,16 +30,30 @@ public class JobTest {
     //Test constructor is assigning class and value of each field
     @Test
     public void testJobConstructorSetsAllFields() {
-        testJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        testJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals(testJob1.getEmployer(), testJob1.getValue(), testJob1.getLocation(), testJob1.getValue());
+        assertEquals("Product Tester", testJob1.getName());
+        assertEquals("ACME", testJob1.getEmployer().getValue());
+        assertEquals("Desert", testJob1.getLocation().getValue());
+        assertEquals("Quality Control", testJob1.getPositionType().getValue());
+        assertEquals("Persistence", testJob1.getCoreCompetency().getValue());
 
     }
+
     //Test jobs for equality
     @Test
     public void testJobsForEquality(){
         assertFalse(testJob1.equals(testJob2));
     }
+
+    //Test if toString method starts and ends with blank line
+    @Test
+    public void testJobEmptyData(){
+        assertEquals((testJob3.toString()), ("\nID: 5\nName: Product Tester\nEmployer: Data Not Available\nLocation: Data Not Available\nPosition Type: Quality Control\nCore Competency: Persistence\n"));
+    }
+
+    //Test for toString if job has ID
+    @Test
+    public void testJobIdOnly(){
+        assertEquals(testEmptyJob.toString() , "Oops! This job does not seem to exist.");
+    }
+
 }
