@@ -79,7 +79,7 @@ public class Job {
 
     public String toString(){
         if((name == "")&&(employer.getValue() == "")&&(location.getValue() == "")&&(positionType.getValue() == "")&&(coreCompetency.getValue() == "")){
-            return "Oops! This jobs does not seem to exist.";
+            return "Oops! This job does not seem to exist.";
         }
         if(name == ""){
             name = "Data Not Available";
