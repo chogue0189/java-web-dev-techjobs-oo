@@ -1,5 +1,7 @@
 package org.launchcode.techjobs_oo.Tests;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.launchcode.techjobs_oo.*;
 import static org.junit.Assert.*;
@@ -12,16 +14,23 @@ public class JobTest {
     private static Job testJob3;
     private static Job testEmptyJob;
 
-
-    //Test constructor is setting a unique ID for each job
-    @Test
-    public void testSettingJobId() {
-        job1 = new Job ();
-        job2 = new Job ();
+    @BeforeClass
+    public static void createJobObjects() {
+        job1 = new Job();
+        job2 = new Job();
         testJob1 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         testJob2 = new Job("Product Tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         testJob3 = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
         testEmptyJob = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+
+    }
+
+
+    //Test constructor is setting a unique ID for each job
+    @Test
+    public void testSettingJobId() {
+        assertEquals(1, (job2.getId()) - (job1.getId()), .001);
+
         //assertEquals(1, job2.getId() - job1.getId(), .001);
         //assertFalse(job1.equals(job2));
         //assertTrue((job1.getId()) < (job2.getId()));

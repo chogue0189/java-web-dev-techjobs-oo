@@ -16,14 +16,14 @@ public class Job {
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
     //  the 'id' field.
-    public void Job(){
-        int uniqueValue = id;
+    public Job(){
+        id = nextId;
+        nextId++;
 
     }
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        Job();
-
+        this();
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -31,7 +31,8 @@ public class Job {
         this.coreCompetency = coreCompetency;
 
     }
-
+    //TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
+    //and id.
     public String getName() {
         return name;
     }
@@ -73,10 +74,34 @@ public class Job {
     }
 
     public int getId() {
-
         return id;
     }
 
+    public String toString(){
+        if((name == "")&&(employer.getValue() == "")&&(location.getValue() == "")&&(positionType.getValue() == "")&&(coreCompetency.getValue() == "")){
+            return "Oops! This jobs does not seem to exist.";
+        }
+        if(name == ""){
+            name = "Data Not Available";
+        }
+        if(employer.getValue() == "") {
+            employer.setValue("Data Not Available");
+        }
+        if(location.getValue() == ""){
+            location.setValue("Data Not Available");
+        }
+        if(positionType.getValue() == ""){
+            positionType.setValue("Data Not Available");
+        }
+        if(coreCompetency.getValue() == ""){
+            coreCompetency.setValue("Data Not Available");
+        }
+
+        return "\nID: "+this.getId()+"\nName: "+name+"\nEmployer: "+employer.getValue()+"\nLocation: "+location.getValue()+"\nPosition Type: "+positionType.getValue()+"\nCore Competency: "+coreCompetency.getValue()+"\n";
+    }
+
+    //TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
+    //match.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,9 +114,7 @@ public class Job {
     public int hashCode() {
         return Objects.hash(id);
     }
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+
+
 }
